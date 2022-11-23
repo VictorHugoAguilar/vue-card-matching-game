@@ -20,11 +20,13 @@
   <p>
     Remaining Pairs: {{ remainingPairs }}
   </p>
+  <button @click="shuffleCards">Shuffle Cards</button>
 </template>
 
 <script>
 import { computed, ref, watch  } from 'vue';
 import Card from '@/components/Card.vue';
+import _ from 'lodash';
 
 export default {
   name: 'App',
@@ -48,10 +50,14 @@ export default {
       return remainingCards / 2
     })
 
+    const shuffleCards = () => {
+      cardList.value = _.shuffle(cardList.value)
+    }
+
     for(let i=0; i<16; i++){
       cardList.value.push({
-        value: 1,
-        visible: false,
+        value: i,
+        visible: true,
         position: i,
         matched: false
       })
@@ -92,7 +98,8 @@ export default {
       flipCard,
       userSelection,
       status,
-      remainingPairs
+      remainingPairs,
+      shuffleCards
     }
   }
 }
