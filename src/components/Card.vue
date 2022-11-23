@@ -1,15 +1,5 @@
-<template>
-  <div class="card" @click="selectCard" :class="flippedStyles"  >
-    <div class="card-face is-front">
-      <img :src="`/images/${value}.png`" :alt="value" /> 
-      <img v-if="matched" src="@/assets/images/checkmark.svg" class="icon-checkmark" />
-    </div>
-    <div class="card-face is-back"></div>
-  </div>
-</template>
-
 <script>
-import {computed} from 'vue';
+import { computed } from 'vue';
 
 export default {
   name: 'card-component',
@@ -28,12 +18,12 @@ export default {
       type: Boolean, default: false
     }
   },
-  setup(props, context){
-  
+  setup(props, context) {
+
     const flippedStyles = computed(() => {
-      if(props.visible){
+      if (props.visible) {
         return 'is-flipped'
-      } 
+      }
       return ''
     })
 
@@ -51,6 +41,16 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="card" @click="selectCard" :class="flippedStyles">
+    <div class="card-face is-front">
+      <img :src="`/images/${value}.png`" :alt="value" />
+      <img v-if="matched" src="@/assets/images/checkmark.svg" class="icon-checkmark" />
+    </div>
+    <div class="card-face is-back"></div>
+  </div>
+</template>
 
 <style>
 .card {
@@ -86,6 +86,7 @@ export default {
   background-image: url('@/assets/images/card-bg-empty.png');
   color: white;
 }
+
 .icon-checkmark {
   position: absolute;
   right: 5px;
