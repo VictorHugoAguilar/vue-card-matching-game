@@ -1,26 +1,20 @@
 <template>
   <h1 class="sr-only">Peek-a-Vue</h1>
   <img class="title" src="/images/peek-a-vue-title.png" alt="peek-a-vue" />
-  <section class="game-board">
+  <transition-group tag="section" name="shuffle-card" class="game-board">
     <Card
-      v-for="(card, index) in cardList"
-      :key="`card-${index}`"
+      v-for="card in cardList"
+      :key="`card-${card.value}-${card.variant}`"
       :position="card.position"
       :value="card.value"
       :visible="card.visible"
       :matched="card.matched"
       @select-card="flipCard"
       />
-  </section>
-  <h1>
-    {{ userSelection }}
-  </h1>
-  <h1>
+  </transition-group>
+  <h1 class="status">
     {{ status  }}
   </h1>
-  <p>
-    Remaining Pairs: {{ remainingPairs }}
-  </p>
   <button @click="restartGame" class="button" >
     <img src="/images/restart.svg" alt="button restart"/>
     Restart Game
@@ -54,12 +48,9 @@ export default {
       return remainingCards / 2
     })
 
-    const shuffleCards = () => {
-      cardList.value = _.shuffle(cardList.value)
-    }
-
     const restartGame = () => {
-      shuffleCards()
+      cardList.value = _.shuffle(cardList.value)
+
       cardList.value = cardList.value.map( (card, index) => {
         return {
           ...card,
@@ -75,12 +66,14 @@ export default {
     cardItems.forEach(item => {
       cardList.value.push({
         value: item,
+        variant: 1,
         visible: false,
         position: null,
         matched: false
       })
       cardList.value.push({
         value: item,
+        variant: 2,
         visible: false,
         position: null,
         matched: false
@@ -136,7 +129,6 @@ export default {
       userSelection,
       status,
       remainingPairs,
-      shuffleCards,
       restartGame
     }
   }
@@ -183,19 +175,25 @@ h1{
 }
 .title{
   padding-bottom: 30px;
-margin-top: 30px;
+  margin-top: 30px;
+}
+.status{
+  margin-top: 30px;
 }
 .button{
- background-color: orange;
- color: white;
- padding: 0.75rem 0.5rem;
- display: flex;
- align-items: center;
- justify-content: center;
- margin: 0 auto;
- font-weight: bold;
+  background-color: orange;
+  color: white;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-weight: bold;
 }
 .button img {
   padding-right: 5px;
+}
+.shuffle-card-move {
+  transition: transform 0.6s ease-in;
 }
 </style>
