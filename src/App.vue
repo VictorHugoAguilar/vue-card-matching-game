@@ -1,6 +1,10 @@
 <template>
   <h1 class="sr-only">Peek-a-Vue</h1>
   <img class="title" src="/images/peek-a-vue-title.png" alt="peek-a-vue" />
+  <section class="description">
+    <p>Welcome to Peek-a-Vue!</p>
+    <p>A card matching game powered by Vue.js 3!</p>
+  </section>
   <transition-group tag="section" name="shuffle-card" class="game-board">
     <Card
       v-for="card in cardList"
@@ -15,7 +19,11 @@
   <h1 class="status">
     {{ status  }}
   </h1>
-  <button @click="restartGame" class="button" >
+  <button @click="startGame" class="button" v-if="newPlayer">
+    <img src="/images/play.svg" alt="button play game"/>
+    Start Game
+  </button>
+  <button @click="restartGame" class="button" v-else>
     <img src="/images/restart.svg" alt="button restart"/>
     Restart Game
   </button>
@@ -35,6 +43,13 @@ export default {
   setup(){
     const cardList = ref([])
     const userSelection = ref([])
+    const newPlayer = ref(true)
+
+
+    const startGame = () => {
+      newPlayer.value= false
+      restartGame()
+    }
 
     const status = computed( () => {
       if(remainingPairs.value === 0){
@@ -137,7 +152,9 @@ export default {
       userSelection,
       status,
       remainingPairs,
-      restartGame
+      startGame,
+      restartGame,
+      newPlayer
     }
   }
 }
@@ -163,6 +180,16 @@ h1{
   color: #fff;
   padding-top: 60px;
 }
+.description{
+  font-family: 'Titillium Web', sans-serif;
+}
+.description p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.description p:last-child{
+  margin-bottom: 30px;
+}
 .game-board{
   display: grid;
   grid-template-columns: repeat(4, 120px);
@@ -187,16 +214,21 @@ h1{
 }
 .status{
   margin-top: 30px;
+  font-family: 'Titillium Web', sans-serif;
 }
 .button{
   background-color: orange;
   color: white;
-  padding: 0.75rem 0.5rem;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
   font-weight: bold;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1.1rem;
+  border: 0;
+  border-radius: 10px;
 }
 .button img {
   padding-right: 5px;
