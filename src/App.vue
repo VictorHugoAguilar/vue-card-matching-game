@@ -1,11 +1,10 @@
 <script>
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import createDeck from './features/createDeck';
+import createGame from './features/createGame';
 import { launchConfetti } from '@/utilities/confetti.js'
 import Card from '@/components/Card.vue';
-import _ from 'lodash';
 import halloweenDeck from './data/halloweenDeck.json'
-
 
 export default {
   name: 'App',
@@ -14,41 +13,10 @@ export default {
   },
   setup() {
     const { cardList } = createDeck(halloweenDeck);
+    const { newPlayer, startGame, restartGame, status,
+      remainingPairs } = createGame(cardList);
 
     const userSelection = ref([])
-    const newPlayer = ref(true)
-
-
-    const startGame = () => {
-      newPlayer.value = false
-      restartGame()
-    }
-
-    const status = computed(() => {
-      if (remainingPairs.value === 0) {
-        return 'Player wins'
-      } else {
-        return `Remaining Pairs: ${remainingPairs.value}`
-      }
-    })
-
-    const remainingPairs = computed(() => {
-      const remainingCards = cardList.value.filter(card => card.matched === false).length
-      return remainingCards / 2
-    })
-
-    const restartGame = () => {
-      cardList.value = _.shuffle(cardList.value)
-
-      cardList.value = cardList.value.map((card, index) => {
-        return {
-          ...card,
-          position: index,
-          matched: false,
-          visible: false
-        }
-      })
-    }
 
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true
@@ -71,7 +39,6 @@ export default {
     })
 
     watch(userSelection, currentValue => {
-
       if (currentValue.length === 2) {
         const cardOne = currentValue[0]
         const cardTwo = currentValue[1]
@@ -85,7 +52,6 @@ export default {
             cardList.value[cardTwo.position].visible = false
           }, 1000)
         }
-
         userSelection.value.length = 0
       }
     }, {
@@ -113,6 +79,16 @@ export default {
     <p>Welcome to Peek-a-Vue!</p>
     <p>A card matching game powered by Vue.js 3!</p>
   </section>
+  <div class="start-button">
+    <button @click="startGame" class="button" v-if="newPlayer">
+      <img src="/images/play.svg" alt="button play game" />
+      Start Game
+    </button>
+    <button @click="restartGame" class="button" v-else>
+      <img src="/images/restart.svg" alt="button restart" />
+      Restart Game
+    </button>
+  </div>
   <transition-group tag="section" name="shuffle-card" class="game-board">
     <Card v-for="card in cardList" :key="`card-${card.value}-${card.variant}`" :position="card.position"
       :value="card.value" :visible="card.visible" :matched="card.matched" @select-card="flipCard" />
@@ -120,14 +96,7 @@ export default {
   <h1 class="status">
     {{ status }}
   </h1>
-  <button @click="startGame" class="button" v-if="newPlayer">
-    <img src="/images/play.svg" alt="button play game" />
-    Start Game
-  </button>
-  <button @click="restartGame" class="button" v-else>
-    <img src="/images/restart.svg" alt="button restart" />
-    Restart Game
-  </button>
+
 </template>
 
 <style>
@@ -146,12 +115,10 @@ h1 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
   background-color: #00070c;
   background-image: url('@/assets/images/page-bg.png');
   height: 100vh;
   color: #fff;
-  padding-top: 60px;
 }
 
 .description {
@@ -165,6 +132,10 @@ h1 {
 
 .description p:last-child {
   margin-bottom: 30px;
+}
+
+.start-button {
+  margin: 30px 0px;
 }
 
 .game-board {
@@ -188,6 +159,7 @@ h1 {
 }
 
 .title {
+  width: 40%;
   padding-bottom: 30px;
   margin-top: 30px;
 }

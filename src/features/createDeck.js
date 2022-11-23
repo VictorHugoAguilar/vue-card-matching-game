@@ -7,7 +7,7 @@ const initDeck = (deckData) => {
     cardList.value.push({
       value: item,
       variant: 1,
-      visible: false,
+      visible: true,
       position: null,
       matched: false,
     });
