@@ -75,7 +75,7 @@ export default {
 }
 
 .card-face.is-front {
-  background-color: red;
+  background-color: purple;
   background-image: url('@/assets/images/card-bg.png');
   color: white;
   transform: rotateY(180deg);

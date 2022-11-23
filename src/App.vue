@@ -192,8 +192,8 @@ h1{
 }
 .game-board{
   display: grid;
-  grid-template-columns: repeat(4, 120px);
-  grid-template-rows: repeat(4, 120px);
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-auto-rows: 180px;
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   justify-content: center;
