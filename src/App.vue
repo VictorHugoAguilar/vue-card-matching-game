@@ -1,37 +1,7 @@
-<template>
-  <h1 class="sr-only">Peek-a-Vue</h1>
-  <img class="title" src="/images/peek-a-vue-title.png" alt="peek-a-vue" />
-  <section class="description">
-    <p>Welcome to Peek-a-Vue!</p>
-    <p>A card matching game powered by Vue.js 3!</p>
-  </section>
-  <transition-group tag="section" name="shuffle-card" class="game-board">
-    <Card
-      v-for="card in cardList"
-      :key="`card-${card.value}-${card.variant}`"
-      :position="card.position"
-      :value="card.value"
-      :visible="card.visible"
-      :matched="card.matched"
-      @select-card="flipCard"
-      />
-  </transition-group>
-  <h1 class="status">
-    {{ status  }}
-  </h1>
-  <button @click="startGame" class="button" v-if="newPlayer">
-    <img src="/images/play.svg" alt="button play game"/>
-    Start Game
-  </button>
-  <button @click="restartGame" class="button" v-else>
-    <img src="/images/restart.svg" alt="button restart"/>
-    Restart Game
-  </button>
-</template>
-
 <script>
-import { computed, ref, watch  } from 'vue';
-import { launchConfetti  } from '@/utilities/confetti.js'
+import { computed, ref, watch } from 'vue';
+import createDeck from './features/createDeck';
+import { launchConfetti } from '@/utilities/confetti.js'
 import Card from '@/components/Card.vue';
 import _ from 'lodash';
 
@@ -40,22 +10,23 @@ export default {
   components: {
     Card
   },
-  setup(){
-    const cardList = ref([])
+  setup() {
+    const { cardList } = createDeck();
+
     const userSelection = ref([])
     const newPlayer = ref(true)
 
 
     const startGame = () => {
-      newPlayer.value= false
+      newPlayer.value = false
       restartGame()
     }
 
-    const status = computed( () => {
-      if(remainingPairs.value === 0){
+    const status = computed(() => {
+      if (remainingPairs.value === 0) {
         return 'Player wins'
-      }else{
-        return `Remaining Pairs: ${ remainingPairs.value }`
+      } else {
+        return `Remaining Pairs: ${remainingPairs.value}`
       }
     })
 
@@ -67,7 +38,7 @@ export default {
     const restartGame = () => {
       cardList.value = _.shuffle(cardList.value)
 
-      cardList.value = cardList.value.map( (card, index) => {
+      cardList.value = cardList.value.map((card, index) => {
         return {
           ...card,
           position: index,
@@ -77,67 +48,40 @@ export default {
       })
     }
 
-    const cardItems = [ 'bat', 'candy', 'cauldron', 'cupcake', 'ghost', 'moon', 'pumpkin', 'witch-hat'  ]
-
-    cardItems.forEach(item => {
-      cardList.value.push({
-        value: item,
-        variant: 1,
-        visible: false,
-        position: null,
-        matched: false
-      })
-      cardList.value.push({
-        value: item,
-        variant: 2,
-        visible: false,
-        position: null,
-        matched: false
-      })
-    })
-
-    cardList.value = cardList.value.map( (card, item) => {
-      return {
-        ...card,
-        position: item
-      }
-    } )
-
     const flipCard = (payload) => {
-      cardList.value[payload.position].visible  = true
-      if(userSelection.value[0]){
-        if(userSelection.value[0].position === payload.position
-          && userSelection.value[0].faceValue === payload.faceValue)
-        {
+      cardList.value[payload.position].visible = true
+      if (userSelection.value[0]) {
+        if (userSelection.value[0].position === payload.position
+          && userSelection.value[0].faceValue === payload.faceValue) {
           return
-        }else{
-          userSelection.value[1]= payload
+        } else {
+          userSelection.value[1] = payload
         }
-      }else{
+      } else {
         userSelection.value[0] = payload
       }
     }
 
     watch(remainingPairs, currentValue => {
-      if(currentValue === 0){
+      if (currentValue === 0) {
         launchConfetti()
       }
     })
 
     watch(userSelection, currentValue => {
 
-      if(currentValue.length === 2){
+      if (currentValue.length === 2) {
         const cardOne = currentValue[0]
         const cardTwo = currentValue[1]
 
-        if(cardOne.faceValue === cardTwo.faceValue){
+        if (cardOne.faceValue === cardTwo.faceValue) {
           cardList.value[cardOne.position].matched = true
           cardList.value[cardTwo.position].matched = true
-        }else{
-          setTimeout( () => {
+        } else {
+          setTimeout(() => {
             cardList.value[cardOne.position].visible = false
             cardList.value[cardTwo.position].visible = false
-          }, 1000 )
+          }, 1000)
         }
 
         userSelection.value.length = 0
@@ -160,14 +104,41 @@ export default {
 }
 </script>
 
+<template>
+  <h1 class="sr-only">Peek-a-Vue</h1>
+  <img class="title" src="/images/peek-a-vue-title.png" alt="peek-a-vue" />
+  <section class="description">
+    <p>Welcome to Peek-a-Vue!</p>
+    <p>A card matching game powered by Vue.js 3!</p>
+  </section>
+  <transition-group tag="section" name="shuffle-card" class="game-board">
+    <Card v-for="card in cardList" :key="`card-${card.value}-${card.variant}`" :position="card.position"
+      :value="card.value" :visible="card.visible" :matched="card.matched" @select-card="flipCard" />
+  </transition-group>
+  <h1 class="status">
+    {{ status }}
+  </h1>
+  <button @click="startGame" class="button" v-if="newPlayer">
+    <img src="/images/play.svg" alt="button play game" />
+    Start Game
+  </button>
+  <button @click="restartGame" class="button" v-else>
+    <img src="/images/restart.svg" alt="button restart" />
+    Restart Game
+  </button>
+</template>
+
 <style>
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
-h1{
+
+h1 {
   margin-top: 0;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -180,17 +151,21 @@ h1{
   color: #fff;
   padding-top: 60px;
 }
-.description{
+
+.description {
   font-family: 'Titillium Web', sans-serif;
 }
+
 .description p {
   margin: 0;
   font-size: 1.2rem;
 }
-.description p:last-child{
+
+.description p:last-child {
   margin-bottom: 30px;
 }
-.game-board{
+
+.game-board {
   display: grid;
   grid-template-columns: 20% 20% 20% 20%;
   grid-auto-rows: 180px;
@@ -198,25 +173,29 @@ h1{
   grid-row-gap: 24px;
   justify-content: center;
 }
-.sr-only{
+
+.sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.title{
+
+.title {
   padding-bottom: 30px;
   margin-top: 30px;
 }
-.status{
+
+.status {
   margin-top: 30px;
   font-family: 'Titillium Web', sans-serif;
 }
-.button{
+
+.button {
   background-color: orange;
   color: white;
   padding: 0.75rem 1rem;
@@ -230,9 +209,11 @@ h1{
   border: 0;
   border-radius: 10px;
 }
+
 .button img {
   padding-right: 5px;
 }
+
 .shuffle-card-move {
   transition: transform 0.6s ease-in;
 }
