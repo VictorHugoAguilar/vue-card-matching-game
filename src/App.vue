@@ -17,6 +17,9 @@ export default {
 
     const userSelection = ref([])
 
+
+
+
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true
       if (userSelection.value[0]) {
