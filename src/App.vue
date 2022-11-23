@@ -13,8 +13,7 @@ export default {
   },
   setup() {
     const { cardList } = createDeck(halloweenDeck);
-    const { newPlayer, startGame, restartGame, status,
-      remainingPairs } = createGame(cardList);
+    const { newPlayer, startGame, restartGame, status, remainingPairs } = createGame(cardList);
 
     const userSelection = ref([])
 
@@ -61,12 +60,12 @@ export default {
     return {
       cardList,
       flipCard,
-      userSelection,
-      status,
+      newPlayer,
       remainingPairs,
-      startGame,
       restartGame,
-      newPlayer
+      startGame,
+      status,
+      userSelection
     }
   }
 }
