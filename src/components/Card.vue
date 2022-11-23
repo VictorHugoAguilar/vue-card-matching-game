@@ -1,8 +1,8 @@
 <template>
   <div class="card" @click="selectCard"  >
     <div v-if="visible" class="card-face is-front">
-      {{ value }}
-      {{ matched }}
+      <img :src="`/images/${value}.png`" :alt="value" /> 
+      <img v-if="matched" src="@/assets/images/checkmark.svg" class="icon-checkmark" />
     </div>
     <div v-else class="card-face is-back">
       Back
@@ -22,7 +22,7 @@ export default {
       type: Number, required: true
     },
     value: {
-      type: Number, required: true
+      type: String, required: true
     },
     visible: {
       type: Boolean, default: false
@@ -31,7 +31,6 @@ export default {
   setup(props, context){
 
     const selectCard = () => {
-      console.log('select card')
       context.emit('select-card', {
         position: props.position,
         faceValue: props.value
@@ -47,7 +46,6 @@ export default {
 
 <style>
 .card {
-  border: 5px solid #ccc;
   position: relative;
 }
 
@@ -55,20 +53,26 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
-
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-face.is-front {
   background-color: red;
+  background-image: url('@/assets/images/card-bg.png');
   color: white;
 }
 
 .card-face.is-back {
   background-color: blue;
+  background-image: url('@/assets/images/card-bg-empty.png');
   color: white;
 }
-
-
-
-
+.icon-checkmark {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
 </style>
