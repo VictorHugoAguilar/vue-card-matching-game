@@ -34,7 +34,14 @@ export default {
   setup(){
     const cardList = ref([])
     const userSelection = ref([])
-    const status = ref('')
+
+    const status = computed( () => {
+      if(remainingPairs.value === 0){
+        return 'Player wins'
+      }else{
+        return `Remaining Pairs: ${ remainingPairs.value }`
+      }
+    })
 
     const remainingPairs = computed(() => {
       const remainingCards = cardList.value.filter(card => card.matched === false).length
