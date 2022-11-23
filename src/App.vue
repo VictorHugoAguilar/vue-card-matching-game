@@ -1,35 +1,32 @@
 <template>
   <h1>Peek a Vue</h1>
   <section class="game-board">
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-  </section>
+    <Card v-for="(item, index) in cardList" :key="`card-${index}`" :value="item" />
+     </section>
 </template>
 
 <script>
+import Card from '@/components/Card.vue';
 
 export default {
   name: 'App',
   components: {
+    Card
+  },
+  setup(){
+    const cardList = [];
+
+    for(let i=0; i<16; i++){
+      cardList.push(i)
+    }
+    return {
+      cardList
+    }
   }
 }
 </script>
 
-<style>
+    <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
