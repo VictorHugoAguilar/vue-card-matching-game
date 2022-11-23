@@ -4,6 +4,8 @@ import createDeck from './features/createDeck';
 import { launchConfetti } from '@/utilities/confetti.js'
 import Card from '@/components/Card.vue';
 import _ from 'lodash';
+import halloweenDeck from './data/halloweenDeck.json'
+
 
 export default {
   name: 'App',
@@ -11,7 +13,7 @@ export default {
     Card
   },
   setup() {
-    const { cardList } = createDeck();
+    const { cardList } = createDeck(halloweenDeck);
 
     const userSelection = ref([])
     const newPlayer = ref(true)
