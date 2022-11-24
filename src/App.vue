@@ -17,9 +17,6 @@ export default {
 
     const userSelection = ref([])
 
-
-
-
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true
       if (userSelection.value[0]) {
@@ -76,18 +73,18 @@ export default {
 
 <template>
   <h1 class="sr-only">Peek-a-Vue</h1>
-  <img class="title" src="/images/peek-a-vue-title.png" alt="peek-a-vue" />
+  <img class="title" src="@/assets/images/peek-a-vue-title.png" alt="peek-a-vue" />
   <section class="description">
     <p>Welcome to Peek-a-Vue!</p>
     <p>A card matching game powered by Vue.js 3!</p>
   </section>
   <div class="start-button">
     <button @click="startGame" class="button" v-if="newPlayer">
-      <img src="/images/play.svg" alt="button play game" />
+      <img src="@/assets/images/play.svg" alt="button play game" />
       Start Game
     </button>
     <button @click="restartGame" class="button" v-else>
-      <img src="/images/restart.svg" alt="button restart" />
+      <img src="@/assets/images/restart.svg" alt="button restart" />
       Restart Game
     </button>
   </div>
@@ -142,8 +139,8 @@ h1 {
 
 .game-board {
   display: grid;
-  grid-template-columns: 20% 20% 20% 20%;
-  grid-auto-rows: 180px;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: repeat(4, 150px);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   justify-content: center;
@@ -161,7 +158,7 @@ h1 {
 }
 
 .title {
-  width: 40%;
+  width: 30%;
   padding-bottom: 30px;
   margin-top: 30px;
 }

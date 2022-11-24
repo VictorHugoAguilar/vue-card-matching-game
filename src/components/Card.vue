@@ -36,7 +36,8 @@ export default {
 
     return {
       flippedStyles,
-      selectCard
+      selectCard,
+      urlImage: computed( ()  => `images/${props.value}.png`)
     }
   }
 }
@@ -45,7 +46,7 @@ export default {
 <template>
   <div class="card" @click="selectCard" :class="flippedStyles">
     <div class="card-face is-front">
-      <img :src="`/images/${value}.png`" :alt="value" />
+      <img :src="urlImage" :alt="value" />
       <img v-if="matched" src="@/assets/images/checkmark.svg" class="icon-checkmark" />
     </div>
     <div class="card-face is-back"></div>
