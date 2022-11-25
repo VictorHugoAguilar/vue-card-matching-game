@@ -1,12 +1,14 @@
 <script>
 import { computed } from 'vue'
-import GameBoard from './view/GameBoard.vue';
 import { useStore } from 'vuex';
+import GameBoard from '@/view/GameBoard.vue';
+import Title from '@/components/Title.vue'
 import createTime from '@/features/createTime'
 
 export default {
   name: 'App',
   components: {
+    Title,
     GameBoard
   },
   setup() {
@@ -23,71 +25,72 @@ export default {
 </script>
 
 <template>
-  <h1 class="sr-only">Peek-a-Vue</h1>
-  <img class="title" src="@/assets/images/peek-a-vue-title.png" alt="peek-a-vue" />
-  <section class="description">
-    <p>Welcome to Peek-a-Vue!</p>
-    <p>A card matching game powered by Vue.js 3!</p>
-  </section>
-
-  <div class="main">
-    <div class="board">
-      <GameBoard />
-    </div>
-    <div class="score">
-      <h2>Time - {{ status }}</h2>
-      <p>{{ time }}</p>
-      <h2>Score</h2>
+  <div class="container">
+    <div class="header">
+      <Title class="title" value="Peek-a-Vue" />
     </div>
 
+    <div class="main">
+      <div class="board">
+        <GameBoard />
+      </div>
+
+      <div class="score">
+        <h2>Time - {{ status }}</h2>
+        <p>{{ time }}</p>
+        <h2>Score</h2>
+      </div>
+      
+    </div>
+
+    <div class="footer">
+      <section class="description">
+        <p>A card matching game powered by Vue.js 3!</p>
+        <p>Adapted whith ❤️ by Victor Hugo </p>
+      </section>
+    </div>
   </div>
-
 </template>
 
-<style>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #00070c;
-  background-image: url('@/assets/images/page-bg.png');
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+<style scoped>
+.container {
+  display: flex;
+  border: thin solid yellow;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  width: 100%;
   height: 100vh;
-  color: #fff;
+  flex-direction: column
 }
 
-h1 {
-  margin-top: 0;
+.header {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: thin solid orange;
 }
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.title {
-  width: 30%;
-  padding-bottom: 20px;
-  margin-top: 20px;
-}
-
 
 .main {
+  width: 100%;
   display: flex;
   flex-direction: row;
 }
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: thin solid blue;
+}
+
+.title {
+  margin-top: 20px;
+  width: 50%;
+}
+
 
 .board {
   width: 70%;

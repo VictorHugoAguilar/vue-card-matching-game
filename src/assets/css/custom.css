@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'monster';
+  src: url('@/assets/font/monster.ttf');
+}
+
+@font-face {
+  font-family: 'zombie';
+  src: url('@/assets/font/zombie.ttf');
+}
