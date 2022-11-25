@@ -1,11 +1,12 @@
 import { ref, computed } from "vue";
-import _ from "lodash";
 import { useStore } from "vuex";
 import getHash from "@/utilities/hash";
 
-export default function createGame(deck) {
+export default function createGame() {
   const store = useStore();
   const newPlayer = ref(true);
+
+  const remainingPairs = computed(() => store.getters.getRemaing);
 
   const startGame = () => {
     newPlayer.value = false;
@@ -14,17 +15,7 @@ export default function createGame(deck) {
 
   const restartGame = () => {
     store.commit("changeStatus", `gaming${getHash()}`);
-
-    deck.value = _.shuffle(deck.value);
-
-    deck.value = deck.value.map((card, index) => {
-      return {
-        ...card,
-        position: index,
-        matched: false,
-        visible: true, // TODO: cambiar luego
-      };
-    });
+    store.dispatch("shuffle");
   };
 
   const status = computed(() => {
@@ -35,11 +26,6 @@ export default function createGame(deck) {
     } else {
       return `Remaining Pairs: ${remainingPairs.value}`;
     }
-  });
-
-  const remainingPairs = computed(() => {
-    const remainingCards = deck.value.filter((card) => card.matched === false).length;
-    return remainingCards / 2;
   });
 
   return {

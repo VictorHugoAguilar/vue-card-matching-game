@@ -1,4 +1,6 @@
 import { ref } from "vue";
+import { useStore } from "vuex";
+import halloweenDeck from "@/data/halloweenDeck.json";
 
 const cardList = ref([]);
 
@@ -30,8 +32,16 @@ const updateCardPosition = () => {
   });
 };
 
-export default function createDeck(deckData) {
-  initDeck(deckData);
+const init = () => {
+  const store = useStore();
+  initDeck(halloweenDeck);
   updateCardPosition();
-  return { cardList };
+  store.commit("addItems", cardList);
+};
+
+export default function createDeck() {
+  return {
+    cardList,
+    init,
+  };
 }

@@ -1,25 +1,16 @@
 <script>
-import { computed } from 'vue'
-import { useStore } from 'vuex';
-import GameBoard from '@/view/GameBoard.vue';
 import Title from '@/components/Title.vue'
-import createTime from '@/features/createTime'
+import GameBoard from '@/view/GameBoard.vue';
+import ManagementBar from '@/view/ManagementBar.vue'
 
 export default {
   name: 'App',
   components: {
+    GameBoard,
+    ManagementBar,
     Title,
-    GameBoard
   },
   setup() {
-    const store = useStore();
-    const { time } = createTime();
-
-    return {
-      time,
-      status: computed(() => store.getters.getStatus)
-    }
-
   }
 }
 </script>
@@ -27,7 +18,7 @@ export default {
 <template>
   <div class="container">
     <div class="header">
-      <Title class="title" value="Peek-a-Vue" />
+      <Title class="title" value="Memo Halloween" />
     </div>
 
     <div class="main">
@@ -36,17 +27,15 @@ export default {
       </div>
 
       <div class="score">
-        <h2>Time - {{ status }}</h2>
-        <p>{{ time }}</p>
-        <h2>Score</h2>
+        <ManagementBar />
       </div>
-      
+
     </div>
 
     <div class="footer">
       <section class="description">
         <p>A card matching game powered by Vue.js 3!</p>
-        <p>Adapted whith ❤️ by Victor Hugo </p>
+        <p>Adapted with ❤️ by Victor Hugo </p>
       </section>
     </div>
   </div>
@@ -54,51 +43,51 @@ export default {
 
 <style scoped>
 .container {
-  display: flex;
-  border: thin solid yellow;
-  justify-content: space-between;
   align-content: center;
   align-items: center;
-  width: 100%;
+  border: thin solid yellow;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  flex-direction: column
+  justify-content: space-between;
+  width: 100%;
 }
 
 .header {
-  width: 100%;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   border: thin solid orange;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  width: 100%;
 }
 
 .main {
-  width: 100%;
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .footer {
-  width: 100%;
+  border: thin solid blue;
   display: flex;
   justify-content: center;
-  border: thin solid blue;
+  width: 100%;
 }
 
 .title {
   margin-top: 20px;
-  width: 50%;
+  width: 80%;
 }
 
 
 .board {
-  width: 70%;
   border: thin solid red;
+  width: 70%;
 }
 
 .score {
-  width: 30%;
   border: thin solid greenyellow;
+  width: 30%;
 }
 </style>
