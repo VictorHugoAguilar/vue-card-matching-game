@@ -98,28 +98,11 @@ export default {
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(4, 150px);
-  grid-template-rows: repeat(4, 150px);
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   justify-content: center;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.title {
-  width: 30%;
-  padding-bottom: 30px;
-  margin-top: 30px;
 }
 
 .status {

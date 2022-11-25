@@ -24,7 +24,7 @@ export default {
       <GameBoard />
     </div>
     <div class="score">
-      <h2>Time</h2> 
+      <h2>Time</h2>
       <h2>Score</h2>
     </div>
 
@@ -37,10 +37,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  margin-top: 0;
+  background-color: #00070c;
+  background-image: url('@/assets/images/page-bg.png');
 }
 
 #app {
@@ -48,11 +46,31 @@ h1 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #00070c;
-  background-image: url('@/assets/images/page-bg.png');
   height: 100vh;
   color: #fff;
 }
+
+h1 {
+  margin-top: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.title {
+  width: 30%;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
 
 .main {
   display: flex;
