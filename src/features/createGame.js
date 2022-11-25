@@ -1,6 +1,7 @@
 import { ref, computed } from "vue";
 import _ from "lodash";
 import { useStore } from "vuex";
+import getHash from "@/utilities/hash";
 
 export default function createGame(deck) {
   const store = useStore();
@@ -12,7 +13,7 @@ export default function createGame(deck) {
   };
 
   const restartGame = () => {
-    store.commit("changeStatus", "gaming");
+    store.commit("changeStatus", `gaming${getHash()}`);
 
     deck.value = _.shuffle(deck.value);
 
@@ -21,7 +22,7 @@ export default function createGame(deck) {
         ...card,
         position: index,
         matched: false,
-        visible: false,
+        visible: true, // TODO: cambiar luego
       };
     });
   };

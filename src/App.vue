@@ -1,7 +1,8 @@
 <script>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import GameBoard from './view/GameBoard.vue';
 import { useStore } from 'vuex';
+import createTime from '@/features/createTime'
 
 export default {
   name: 'App',
@@ -9,24 +10,13 @@ export default {
     GameBoard
   },
   setup() {
-    const store  = useStore();
-    const times = ref(0);
-
-
-    const startTime = () => {
-      setInterval(() => {
-        times.value++
-      }, 1000)
-    }
-
-    startTime();
-
+    const store = useStore();
+    const { time } = createTime();
 
     return {
-      times,
-      status: computed(() => store.state.status)
+      time,
+      status: computed(() => store.getters.getStatus)
     }
-
 
   }
 }
@@ -46,7 +36,7 @@ export default {
     </div>
     <div class="score">
       <h2>Time - {{ status }}</h2>
-      <p>{{ times }}</p>
+      <p>{{ time }}</p>
       <h2>Score</h2>
     </div>
 

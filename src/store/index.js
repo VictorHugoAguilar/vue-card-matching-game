@@ -4,17 +4,20 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      status: 'stoped', // 'stoped' | 'gaming' | 'finished'
+      status: "stoped", // 'stoped' | 'gaming' | 'finished'
       count: 0,
     };
+  },
+  getters: {
+    getStatus: (state) => state.status,
   },
   mutations: {
     increment(state) {
       state.count++;
     },
-    changeStatus(state, status){
-      state.status = status
-    }
+    changeStatus(state, status) {
+      state.status = status;
+    },
   },
 });
 
