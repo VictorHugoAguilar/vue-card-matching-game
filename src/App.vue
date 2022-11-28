@@ -25,7 +25,6 @@ export default {
       if (status === 'finished') {
         showAddScore.value = true;
         time.value = store.getters.getTime;
-        console.log('timeRef', time.value)
       }
     })
     const added = ({ added = false }) => {
@@ -43,39 +42,65 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="header">
-      <Title class="title" value="Memo Halloween" />
-    </div>
+  <div class="base effect">
+    <div class="container">
+      <AddScore class="modal-add-score" @added-score="added" v-if="showAddScore" :time="time" />
+      <div class="cinema grain ">
+        <div class="header">
+          <Title class="title" value="Memo Halloween" />
+        </div>
+        <div class="main">
 
-    <AddScore @added-score="added" v-if="showAddScore" :time="time" />
+          <div class="score">
+            <ScoreBar />
+          </div>
 
-    <div class="main">
+          <div class="board">
+            <GameBoard class="game-board" />
+          </div>
 
-      <div class="score">
-        <ScoreBar />
+          <div class="timing">
+            <ManagementBar class="management-bar" />
+          </div>
+
+        </div>
       </div>
-
-      <div class="board">
-        <GameBoard />
+      <div class="footer">
+        <section class="description">
+          <p>A card matching game powered by Vue.js 3!</p>
+          <p>Adapted with ❤️ by Victor Hugo </p>
+        </section>
       </div>
-
-      <div class="timing">
-        <ManagementBar />
-      </div>
-
     </div>
-
-    <div class="footer">
-      <section class="description">
-        <p>A card matching game powered by Vue.js 3!</p>
-        <p>Adapted with ❤️ by Victor Hugo </p>
-      </section>
-    </div>
+    <div class="nosferatu monster"></div>
   </div>
 </template>
 
 <style scoped>
+.base {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #02080B;
+  perspective: 100vmin;
+}
+
+game-board,
+management-bar {
+  z-index: 89 !important;
+}
+
 .container {
   align-content: center;
   align-items: center;
@@ -84,6 +109,10 @@ export default {
   height: 100vh;
   justify-content: space-between;
   width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 20vmin 0vmin #000 inset,
+    0 0 3vmin 0.25vmin #000 inset,
+    0 0 1vmin 1vmin #000;
 }
 
 .header {
@@ -98,10 +127,11 @@ export default {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 70%;
+  height: 80%;
 }
 
 .footer {
+  z-index: 99;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -112,13 +142,14 @@ export default {
   width: 80%;
 }
 
-
 .board {
+  z-index: 900 !important;
   width: 50%;
   padding: 40px;
 }
 
 .score {
+  z-index: 99 !important;
   width: 20%;
   height: 70%;
   border-radius: 40px;
@@ -129,6 +160,7 @@ export default {
 }
 
 .timing {
+  z-index: 99 !important;
   width: 20%;
   height: 70%;
   border-radius: 40px;
@@ -137,4 +169,13 @@ export default {
   margin: 20px;
   padding: 0px 20px 20px 20px;
 }
+
+.modal-add-score {
+  z-index: 999;
+}
+
+.monster {
+  position: absolute
+}
 </style>
+

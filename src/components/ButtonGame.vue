@@ -45,9 +45,10 @@ export default {
   width: 80%;
   font-weight: bold;
   font-family: 'Titillium Web', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   border: 0;
   border-radius: 10px;
+  z-index: 99;
 }
 
 .button img {

@@ -55,6 +55,7 @@ export default {
 
 <style>
 .card {
+  z-index: 99 !important;
   position: relative;
   transition: 0.5s transform ease-in;
   transform-style: preserve-3d;

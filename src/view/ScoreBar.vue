@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <div class="score-board">
+  <div class="score-board ">
     <h1>Scores</h1>
     <table class="table-score">
       <tr v-for="player in players" :key="player.position">

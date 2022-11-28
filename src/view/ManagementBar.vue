@@ -27,11 +27,13 @@ export default {
 </script>
 
 <template>
-  <div class="management-bar-container">
-    <h1>Times</h1>
-    <p>{{ time }}</p>
-    <ButtonGame />
-    <h2>{{ remainingPairs }}</h2>
+  <div class="grain">
+    <div class="management-bar-container">
+      <h1>Times</h1>
+      <p>{{ time }}</p>
+      <ButtonGame class="btn-game" />
+      <h2>{{ remainingPairs }}</h2>
+    </div>
   </div>
 </template>
 
@@ -64,5 +66,9 @@ p {
   color: #BC2A01;
   padding: 0;
   margin: 0;
+}
+
+.btn-game {
+  z-index: 99 !important;
 }
 </style>

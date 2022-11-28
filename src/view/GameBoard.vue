@@ -42,6 +42,7 @@ export default {
         store.commit('setTime', time.value)
         launchConfetti()
       }
+
     })
 
     watch(userSelection, currentValue => {
@@ -56,7 +57,7 @@ export default {
           setTimeout(() => {
             cardList.value[cardOne.position].visible = false
             cardList.value[cardTwo.position].visible = false
-          }, 1000)
+          }, 800)
         }
         userSelection.value.length = 0
       }
@@ -76,18 +77,23 @@ export default {
 <template>
   <transition-group tag="section" name="shuffle-card" class="game-board">
     <Card v-for="card in cardList" :key="`card-${card.value}-${card.variant}`" :position="card.position"
-      :value="card.value" :visible="card.visible" :matched="card.matched" @select-card="flipCard" />
+      :value="card.value" :visible="card.visible" :matched="card.matched" @select-card="flipCard" class="card" />
   </transition-group>
 </template>
 
 <style scoped>
 .game-board {
+  z-index: 98 !important;
   display: grid;
   grid-template-columns: repeat(4, 100px);
   grid-template-rows: repeat(4, 100px);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   justify-content: center;
+}
+
+.card {
+  z-index: 99 !important;
 }
 
 .shuffle-card-move {

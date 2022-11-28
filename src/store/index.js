@@ -53,11 +53,10 @@ const store = createStore({
     readScore({ dispatch }) {
       const ls = localStorage.getItem("scores");
       if (!ls) {
-        console.log("vacio");
         return;
       }
       const scores = JSON.parse(ls);
-      // let scores =mockScore
+      // let scores = mockScore
       dispatch("refreshScore", scores);
     },
     saveScore({ dispatch, state }, score) {

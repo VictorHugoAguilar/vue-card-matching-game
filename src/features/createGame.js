@@ -19,9 +19,9 @@ export default function createGame() {
   };
 
   const status = computed(() => {
-    if (remainingPairs.value === 0) {
+    const isGamming = store.getters.getStatus.includes("gaming");
+    if (isGamming && remainingPairs.value === 0) {
       store.commit("changeStatus", "finished");
-
       return "Player wins";
     } else {
       return `Remaining Pairs: ${remainingPairs.value}`;
