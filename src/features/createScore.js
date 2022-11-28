@@ -9,6 +9,7 @@ export default function createGame() {
   const players = computed(() => store.getters.getScores);
 
   const addScore = (score) => {
+    console.debug(new Date().toISOString(), "add score", score);
     store.dispatch("saveScore", score);
   };
 

@@ -7,18 +7,23 @@ const store = createStore({
     return {
       status: "stoped", // 'stoped' | 'gaming' | 'finished'
       listItem: {},
+      time: 0,
       scores: [],
     };
   },
   getters: {
     getStatus: (state) => state.status,
     getListItem: (state) => state.listItem,
+    getTime: (state) => state.time,
     getRemaing: (state) => state.listItem.filter((card) => card.matched === false).length / 2,
     getScores: (state) => state.scores.slice(0, 18),
   },
   mutations: {
     changeStatus(state, status) {
       state.status = status;
+    },
+    setTime(state, time) {
+      state.time = time;
     },
     addItems(state, items) {
       state.listItem = items;

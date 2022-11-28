@@ -1,8 +1,11 @@
 <script>
-import Title from '@/components/Title.vue'
-import GameBoard from '@/view/GameBoard.vue';
+import { ref, watchEffect } from 'vue';
+import { useStore } from 'vuex';
 import ManagementBar from '@/view/ManagementBar.vue'
-import ScoreBar from './view/ScoreBar.vue';
+import GameBoard from '@/view/GameBoard.vue';
+import ScoreBar from '@/view/ScoreBar.vue';
+import AddScore from '@/components/AddScore.vue';
+import Title from '@/components/Title.vue'
 
 export default {
   name: 'App',
@@ -11,8 +14,30 @@ export default {
     ManagementBar,
     ScoreBar,
     Title,
+    AddScore
   },
   setup() {
+    const store = useStore();
+    const showAddScore = ref(false);
+    const time = ref(0)
+    watchEffect(() => {
+      const status = store.getters.getStatus;
+      if (status === 'finished') {
+        showAddScore.value = true;
+        time.value = store.getters.getTime;
+        console.log('timeRef', time.value)
+      }
+    })
+    const added = ({ added = false }) => {
+      if (added) {
+        showAddScore.value = false;
+      }
+    }
+    return {
+      added,
+      showAddScore,
+      time
+    }
   }
 }
 </script>
@@ -23,12 +48,14 @@ export default {
       <Title class="title" value="Memo Halloween" />
     </div>
 
+    <AddScore @added-score="added" v-if="showAddScore" :time="time" />
+
     <div class="main">
 
       <div class="score">
         <ScoreBar />
       </div>
-      
+
       <div class="board">
         <GameBoard />
       </div>
@@ -99,7 +126,7 @@ export default {
   width: 25%;
 }
 
-.timing{
+.timing {
   width: 25%;
   border: thin solid greenyellow;
 }
