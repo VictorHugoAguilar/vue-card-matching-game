@@ -1,6 +1,6 @@
 <template>
   <div class="container-add-score">
-    <div class="close">[ <span>X</span> ]</div>
+    <div class="close" @click="closeModal">[ <span>X</span> ]</div>
     <div class="add-score">
       <h1>Add Score</h1>
       <form class="form" @submit.prevent="add">
@@ -45,7 +45,11 @@ export default {
       name.value = '';
       context.emit('added-score', { added: true })
     }
+    const closeModal = () => {
+      context.emit('added-score', { added: true })
+    }
     return {
+      closeModal,
       times,
       add
     }
