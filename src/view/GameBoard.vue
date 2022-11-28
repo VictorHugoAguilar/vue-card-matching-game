@@ -2,6 +2,8 @@
 import { ref, watch } from 'vue';
 import createDeck from '@/features/createDeck';
 import createGame from '@/features/createGame';
+import createTime from '@/features/createTime';
+import createScore from '@/features/createScore';
 import { launchConfetti } from '@/utilities/confetti.js'
 import Card from '@/components/Card.vue';
 
@@ -16,6 +18,9 @@ export default {
     init();
 
     const { remainingPairs } = createGame(cardList);
+    const { time } = createTime();
+    const { addScore: addNewScore } = createScore();
+
     const userSelection = ref([])
 
     const flipCard = (payload) => {
@@ -58,10 +63,24 @@ export default {
       deep: true
     })
 
+    const addScore = ({ target: { name, time } }) => {
+      if (!name.value || name.value.length === 0) return;
+      if (time.value <= 0) return;
+      const score = {
+        name: name.value,
+        time: Number(time.value)
+      }
+      addNewScore(score);
+      name.value = '';
+      name.time = 0;
+    }
+
     return {
       cardList,
       flipCard,
-      userSelection
+      userSelection,
+      addScore,
+      time
     }
   }
 }
@@ -72,6 +91,15 @@ export default {
     <Card v-for="card in cardList" :key="`card-${card.value}-${card.variant}`" :position="card.position"
       :value="card.value" :visible="card.visible" :matched="card.matched" @select-card="flipCard" />
   </transition-group>
+
+  <div class="add-score">
+    <form @submit.prevent="addScore">
+      <label>You name: </label>
+      <input type="text" id="name" name="name">
+      <input type="number" name="time" :value="time" readonly />
+      <button>Add Score</button>
+    </form>
+  </div>
 </template>
 
 <style scoped>

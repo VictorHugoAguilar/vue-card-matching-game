@@ -3,11 +3,11 @@ import { useStore } from "vuex";
 
 export default function createGame() {
   const store = useStore();
-  const time = ref(0);
+  const time = ref(1);
 
   let idTime;
   const startTime = () => {
-    time.value = 0;
+    time.value = 1;
 
     if (idTime) {
       stopTime();

@@ -28,6 +28,7 @@ export default {
       <div class="score">
         <ScoreBar />
       </div>
+      
       <div class="board">
         <GameBoard />
       </div>
