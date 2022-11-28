@@ -2,12 +2,14 @@
 import Title from '@/components/Title.vue'
 import GameBoard from '@/view/GameBoard.vue';
 import ManagementBar from '@/view/ManagementBar.vue'
+import ScoreBar from './view/ScoreBar.vue';
 
 export default {
   name: 'App',
   components: {
     GameBoard,
     ManagementBar,
+    ScoreBar,
     Title,
   },
   setup() {
@@ -24,7 +26,7 @@ export default {
     <div class="main">
 
       <div class="score">
-
+        <ScoreBar />
       </div>
       <div class="board">
         <GameBoard />
