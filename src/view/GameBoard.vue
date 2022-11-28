@@ -15,12 +15,8 @@ export default {
     const { cardList, init } = createDeck();
     init();
 
-    console.log('LISTA-> ', cardList.value)
-
-    const { status, remainingPairs } = createGame(cardList);
-
+    const { remainingPairs } = createGame(cardList);
     const userSelection = ref([])
-
 
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true
@@ -65,8 +61,6 @@ export default {
     return {
       cardList,
       flipCard,
-      remainingPairs,
-      status,
       userSelection
     }
   }
@@ -78,16 +72,9 @@ export default {
     <Card v-for="card in cardList" :key="`card-${card.value}-${card.variant}`" :position="card.position"
       :value="card.value" :visible="card.visible" :matched="card.matched" @select-card="flipCard" />
   </transition-group>
-  <h1 class="status">
-    {{ status }}
-  </h1>
 </template>
 
 <style scoped>
-.start-button {
-  margin: 30px 0px;
-}
-
 .game-board {
   display: grid;
   grid-template-columns: repeat(4, 100px);
@@ -95,11 +82,6 @@ export default {
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   justify-content: center;
-}
-
-.status {
-  margin-top: 30px;
-  font-family: 'Titillium Web', sans-serif;
 }
 
 .shuffle-card-move {

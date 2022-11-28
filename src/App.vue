@@ -22,11 +22,15 @@ export default {
     </div>
 
     <div class="main">
+
+      <div class="score">
+
+      </div>
       <div class="board">
         <GameBoard />
       </div>
 
-      <div class="score">
+      <div class="timing">
         <ManagementBar />
       </div>
 
@@ -83,11 +87,17 @@ export default {
 
 .board {
   border: thin solid red;
-  width: 70%;
+  width: 50%;
+  padding: 40px;
 }
 
 .score {
   border: thin solid greenyellow;
-  width: 30%;
+  width: 25%;
+}
+
+.timing{
+  width: 25%;
+  border: thin solid greenyellow;
 }
 </style>
