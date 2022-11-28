@@ -39,18 +39,18 @@ h2 {
 }
 
 .content h2 {
-  color: #fff;
+  color: var(--color-light);
   font-size: 8em;
   position: absolute;
 }
 
 .content h2:nth-child(1) {
   color: transparent;
-  -webkit-text-stroke: 5px #ee980d;
+  -webkit-text-stroke: 5px var(--color-primary);
 }
 
 .content h2:nth-child(2) {
-  color: #bc2a01;
+  color: var(--color-secundary);
   animation: animate 4s ease-in-out infinite;
 }
 

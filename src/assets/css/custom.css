@@ -9,8 +9,19 @@
 }
 
 :root {
-  --shadow: #00070B;
+  --shadow: #00070b;
   --delay: 1.5s;
+  --background-color-primary: #00070b;
+  --background-color-secundary: #101d27;
+  --color-primary: #ee980d;
+  --color-secundary: #bc2a01;
+  --color-light: #fff;
+  --color-front-card: #750375;
+  --color-back-card: #ee980d;
+  --color-first-place: rgb(133, 32, 227);
+  --color-second-place: rgb(162, 96, 223);
+  --color-third-place: rgb(172, 133, 208);
+
 }
 
 .content {
@@ -25,9 +36,7 @@
   content: "";
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 20vmin 0vmin #000 inset, 
-    0 0 3vmin 0.25vmin #000 inset, 
-    0 0 1vmin 1vmin #000;
+  box-shadow: 0 0 20vmin 0vmin #000 inset, 0 0 3vmin 0.25vmin #000 inset, 0 0 1vmin 1vmin #000;
 }
 
 .cinema,

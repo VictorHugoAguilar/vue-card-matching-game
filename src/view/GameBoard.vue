@@ -42,7 +42,6 @@ export default {
         store.commit('setTime', time.value)
         launchConfetti()
       }
-
     })
 
     watch(userSelection, currentValue => {

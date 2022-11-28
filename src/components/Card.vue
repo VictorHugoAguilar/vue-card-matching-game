@@ -37,7 +37,7 @@ export default {
     return {
       flippedStyles,
       selectCard,
-      urlImage: computed( ()  => `images/${props.value}.png`)
+      urlImage: computed(() => `images/${props.value}.png`)
     }
   }
 }
@@ -77,16 +77,16 @@ export default {
 }
 
 .card-face.is-front {
-  background-color: purple;
+  background-color: var(--color-back-card);
   background-image: url('@/assets/images/card-bg.png');
-  color: white;
+  color: var(--color-light);
   transform: rotateY(180deg);
 }
 
 .card-face.is-back {
-  background-color: blue;
+  background-color: var(--color-back-card);
   background-image: url('@/assets/images/card-bg-empty.png');
-  color: white;
+  color: var(--color-light);
 }
 
 .icon-checkmark {

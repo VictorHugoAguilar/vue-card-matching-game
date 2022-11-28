@@ -38,31 +38,31 @@ export default {
 
 h1 {
   font-family: monster;
-  color: #FFA501;
+  color: var(--color-primary);
   letter-spacing: 10px;
   padding-bottom: 10px;
-  border-bottom: 3px solid #FFA501;
+  border-bottom: 3px solid var(--color-primary);
 }
 
 .table-score {
   font-family: monster;
   font-size: 1.2rem;
-  color: #FFA501;
+  color: var(--color-primary);
   letter-spacing: 2px;
 }
 
 tr:first-child {
-  color: rgb(133, 32, 227);
+  color: var(--color-first-place);
   font-size: 2.2rem;
 }
 
 tr:nth-child(2) {
-  color: rgb(162, 96, 223);
+  color: var(--color-second-place);
   font-size: 1.8rem;
 }
 
 tr:nth-child(3) {
-  color: rgb(172, 133, 208);
+  color: var(--color-third-place);
   font-size: 1.4rem;
 }
 </style>

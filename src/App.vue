@@ -92,7 +92,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #02080B;
+  background: var(--background-color-primary);
   perspective: 100vmin;
 }
 
@@ -110,9 +110,9 @@ management-bar {
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 0 20vmin 0vmin #000 inset,
-    0 0 3vmin 0.25vmin #000 inset,
-    0 0 1vmin 1vmin #000;
+  box-shadow: 0 0 20vmin 0vmin var(--background-color-primary) inset,
+    0 0 3vmin 0.25vmin var(--background-color-primary) inset,
+    0 0 1vmin 1vmin var(--background-color-primary);
 }
 
 .header {
@@ -153,8 +153,8 @@ management-bar {
   width: 20%;
   height: 70%;
   border-radius: 40px;
-  background-color: #00070B;
-  border: 4px solid #FFA501;
+  background-color: var(--background-color-primary);
+  border: 4px solid var(--color-primary);
   margin: 20px;
   padding: 20px;
 }
@@ -164,8 +164,8 @@ management-bar {
   width: 20%;
   height: 70%;
   border-radius: 40px;
-  background-color: #00070B;
-  border: 4px solid #FFA501;
+  background-color: var(--background-color-primary);
+  border: 4px solid var(--color-primary);
   margin: 20px;
   padding: 0px 20px 20px 20px;
 }

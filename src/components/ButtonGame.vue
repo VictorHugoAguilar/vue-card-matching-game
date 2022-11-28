@@ -35,8 +35,8 @@ export default {
 
 <style scoped>
 .button {
-  background-color: orange;
-  color: #BC2A01;
+  background-color: var(--color-primary);
+  color: var(--color-secundary);
   padding: 0.75rem 1rem;
   display: flex;
   align-items: center;

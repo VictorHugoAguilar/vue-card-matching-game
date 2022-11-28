@@ -31,7 +31,7 @@ const store = createStore({
       state.listItem = items;
     },
     changItems(state, newItems) {
-      state.listItem = newItems;
+      state.listItem = newItems; 
     },
     saveScores(state, scores) {
       state.scores = scores;
@@ -45,7 +45,7 @@ const store = createStore({
           ...card,
           position: index,
           matched: false,
-          visible: false, // cambiar luego si se quiere hacer mostrar for test
+          visible: true, // cambiar luego si se quiere hacer mostrar for test
         };
       });
       commit("changItems", shuffleCards);

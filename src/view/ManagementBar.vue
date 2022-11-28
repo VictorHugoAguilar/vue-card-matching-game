@@ -48,7 +48,7 @@ export default {
 h1 {
   font-family: monster;
   font-size: 3rem;
-  color: #FFA501;
+  color: var(--color-primary);
   letter-spacing: 10px;
 }
 
@@ -56,14 +56,14 @@ h2 {
   font-family: monster;
   font-size: x-large;
   margin: 0px 0px 20px 0px;
-  color: #FFA501;
+  color: var(--color-primary);
   letter-spacing: 2px;
 }
 
 p {
   font-family: monster;
   font-size: 3rem;
-  color: #BC2A01;
+  color: var(--color-secundary);
   padding: 0;
   margin: 0;
 }

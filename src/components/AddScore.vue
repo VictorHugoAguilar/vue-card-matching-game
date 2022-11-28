@@ -1,5 +1,6 @@
 <template>
   <div class="container-add-score">
+    <div class="close">[ <span>X</span> ]</div>
     <div class="add-score">
       <h1>Add Score</h1>
       <form class="form" @submit.prevent="add">
@@ -54,15 +55,14 @@ export default {
 
 <style scoped>
 .container-add-score {
-  background-color: #FFA501;
+  background-color: var(--color-primary);
   border-radius: 40px;
   width: 400px;
-  height: 400px;
+  height: 450px;
   position: absolute;
   margin-top: 300px;
   z-index: 99;
-  box-shadow: 5px 5px 5px #BC2A01;
-
+  box-shadow: 5px 5px 5px var(--color-secundary);
 }
 
 .add-score {
@@ -72,12 +72,25 @@ export default {
   align-items: center;
 }
 
+div.close {
+  color: var(--color-secundary);
+  font-size: large;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0px 0px;
+}
+
+div.close span {
+  font-weight: bold;
+}
+
 h1 {
   font-family: 'monster';
   font-size: 3rem;
   margin: 0px;
   margin-top: 20px;
-  color: #BC2A01;
+  color: var(--color-secundary);
 }
 
 .form {
@@ -89,8 +102,8 @@ h1 {
   margin: 20px 0px;
   font-family: 'monster';
   font-size: 2rem;
-  color: white;
-  text-shadow: 2px 2px #BC2A01;
+  color: var(--color-light);
+  text-shadow: 2px 2px var(--color-secundary);
 }
 
 .form-control {
@@ -106,8 +119,8 @@ h1 {
   background-color: transparent;
   border: thin solid transparent;
   border-radius: 20px;
-  box-shadow: 4px 4px 6px #BC2A01;
-  color: #BC2A01;
+  box-shadow: 4px 4px 6px var(--color-secundary);
+  color: var(--color-secundary);
   font-size: x-large;
   text-align: center;
 }
@@ -116,12 +129,12 @@ h1 {
   height: 30px;
   background-color: transparent;
   border: thin solid transparent;
-  color: #BC2A01;
+  color: var(--color-secundary);
   font-family: 'monster';
   font-weight: bolder;
   font-size: x-large;
   text-align: center;
-  text-shadow: 2px 2px white;
+  text-shadow: 2px 2px var(--color-light);
 }
 
 .btn-add {
@@ -130,12 +143,12 @@ h1 {
   border: none;
   border-radius: 20px;
   margin: 20px 0px;
-  color: #BC2A01;
+  color: var(--color-secundary);
   font-weight: bolder;
   text-transform: uppercase;
 }
 
 .btn-add:hover {
-  box-shadow: 4px 4px 6px #BC2A01;
+  box-shadow: 4px 4px 6px var(--color-secundary);
 }
 </style>
