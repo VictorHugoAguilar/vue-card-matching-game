@@ -52,7 +52,8 @@ h1 {
 
 h2 {
   font-family: monster;
-  font-size: 1.5rem;
+  font-size: x-large;
+  margin: 0px 0px 20px 0px;
   color: #FFA501;
   letter-spacing: 2px;
 }

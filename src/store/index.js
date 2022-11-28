@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import _ from "lodash";
+// eslint-disable-next-line no-unused-vars
+import mockScore from "@/store/mock-score.json";
 
 // Create a new store instance.
 const store = createStore({
@@ -43,7 +45,7 @@ const store = createStore({
           ...card,
           position: index,
           matched: false,
-          visible: true, // TODO: cambiar luego
+          visible: false, // cambiar luego si se quiere hacer mostrar for test
         };
       });
       commit("changItems", shuffleCards);
@@ -54,30 +56,8 @@ const store = createStore({
         console.log("vacio");
         return;
       }
-      // TODO: quitar comentado
-      // const scores = JSON.parse(ls);
-      let scores = [
-        { position: 1, name: "Victor", time: 12 },
-        { position: 2, name: "Victor2", time: 22 },
-        { position: 3, name: "Victor3", time: 32 },
-        { position: 4, name: "Victor4", time: 142 },
-        { position: 5, name: "Victor5", time: 52 },
-        { position: 6, name: "Victor6", time: 62 },
-        { position: 7, name: "Victor7", time: 272 },
-        { position: 8, name: "Victor8", time: 82 },
-        { position: 9, name: "Victor9", time: 92 },
-        { position: 10, name: "Victor10", time: 102 },
-        { position: 11, name: "Victor", time: 13 },
-        { position: 12, name: "Victor2", time: 42 },
-        { position: 13, name: "Victor3", time: 32 },
-        { position: 14, name: "Coquis", time: 41 },
-        { position: 15, name: "Victor5", time: 42 },
-        { position: 16, name: "Paula", time: 62 },
-        { position: 17, name: "Victor7", time: 82 },
-        { position: 18, name: "Victor8", time: 92 },
-        { position: 19, name: "Victor9", time: 42 },
-        { position: 20, name: "VictorH.", time: 13 },
-      ];
+      const scores = JSON.parse(ls);
+      // let scores =mockScore
       dispatch("refreshScore", scores);
     },
     saveScore({ dispatch, state }, score) {

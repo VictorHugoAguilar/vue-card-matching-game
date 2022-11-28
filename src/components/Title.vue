@@ -29,14 +29,16 @@ export default {
 
 .content {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 h2 {
   margin: 0;
+  width: 100%;
 }
 
 .content h2 {
-  border: thin solid red;
   color: #fff;
   font-size: 8em;
   position: absolute;

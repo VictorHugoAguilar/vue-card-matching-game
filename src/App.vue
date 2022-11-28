@@ -79,7 +79,6 @@ export default {
 .container {
   align-content: center;
   align-items: center;
-  border: thin solid yellow;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -89,10 +88,9 @@ export default {
 
 .header {
   align-items: center;
-  border: thin solid orange;
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 170px;
   width: 100%;
 }
 
@@ -100,10 +98,10 @@ export default {
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 70%;
 }
 
 .footer {
-  border: thin solid blue;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -116,18 +114,27 @@ export default {
 
 
 .board {
-  border: thin solid red;
   width: 50%;
   padding: 40px;
 }
 
 .score {
-  border: thin solid greenyellow;
-  width: 25%;
+  width: 20%;
+  height: 70%;
+  border-radius: 40px;
+  background-color: #00070B;
+  border: 4px solid #FFA501;
+  margin: 20px;
+  padding: 20px;
 }
 
 .timing {
-  width: 25%;
-  border: thin solid greenyellow;
+  width: 20%;
+  height: 70%;
+  border-radius: 40px;
+  background-color: #00070B;
+  border: 4px solid #FFA501;
+  margin: 20px;
+  padding: 0px 20px 20px 20px;
 }
 </style>
