@@ -45,7 +45,7 @@ const store = createStore({
           ...card,
           position: index,
           matched: false,
-          visible: true, // cambiar luego si se quiere hacer mostrar for test
+          visible: false, // cambiar luego si se quiere hacer mostrar for test
         };
       });
       commit("changItems", shuffleCards);
