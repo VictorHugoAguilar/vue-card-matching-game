@@ -5,15 +5,15 @@ import ManagementBar from '@/view/ManagementBar.vue'
 import GameBoard from '@/view/GameBoard.vue';
 import ScoreBar from '@/view/ScoreBar.vue';
 import AddScore from '@/components/AddScore.vue';
-import Title from '@/components/Title.vue'
+import HeaderBoard from './view/HeaderBoard.vue';
 
 export default {
   name: 'App',
   components: {
+    HeaderBoard,
     GameBoard,
     ManagementBar,
     ScoreBar,
-    Title,
     AddScore
   },
   setup() {
@@ -32,10 +32,11 @@ export default {
         showAddScore.value = false;
       }
     }
+
     return {
       added,
       showAddScore,
-      time
+      time,
     }
   }
 }
@@ -47,7 +48,7 @@ export default {
       <AddScore class="modal-add-score" @added-score="added" v-if="showAddScore" :time="time" />
       <div class="cinema grain ">
         <div class="header">
-          <Title class="title" value="Memo Halloween" />
+          <HeaderBoard />
         </div>
         <div class="main">
 
@@ -116,6 +117,7 @@ management-bar {
 }
 
 .header {
+  z-index: 199 !important;
   align-items: center;
   display: flex;
   flex-direction: column;

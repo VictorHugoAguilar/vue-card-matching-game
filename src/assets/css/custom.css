@@ -21,7 +21,6 @@
   --color-first-place: rgb(133, 32, 227);
   --color-second-place: rgb(162, 96, 223);
   --color-third-place: rgb(172, 133, 208);
-
 }
 
 .content {
@@ -96,6 +95,16 @@
     ),
     repeating-conic-gradient(#fff 0%, transparent 0.0005%, transparent 0.0015%, transparent 0.065%);
   animation: grain 0.5s steps(1) infinite;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 @keyframes grain {
