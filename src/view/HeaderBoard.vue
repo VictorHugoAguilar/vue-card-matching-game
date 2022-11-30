@@ -1,12 +1,14 @@
 <template>
   <div class="container-header">
 
-    <Title class="title no-select" value="Memo Halloween" />
+    <div class="container-title">
+      <Title class="title no-select" value="Memo Halloween" />
+    </div>
 
     <div class="container-button-sound">
       <div class="music-player">
-        <audio ref="audio" src="/audio/bg-music.mp3" preload loop id="audio" autoplay> </audio>
-        <div @click="toggleSound()" class="toggle-sound">
+        <audio id="audio" ref="audio" src="audio/bg-music.mp3" preload loop autoplay />
+        <div @click.prevent="toggleSound()" class="toggle-sound paused">
           <IconSound :status="playSound" />
         </div>
       </div>
@@ -16,7 +18,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Title from '@/components/Title.vue'
 import IconSound from '@/components/IconSound.vue'
 
@@ -31,7 +33,6 @@ export default {
     const playSound = ref(true)
 
     const toggleSound = () => {
-
       if (
         audio.value.paused &&
         document.querySelector(".toggle-sound").classList.contains("paused")
@@ -46,12 +47,24 @@ export default {
         playSound.value = false
         document.querySelector(".toggle-sound").classList.add("paused");
       }
+    };
+
+    const startWithMusic = () => {
+      audio.value.play();
+      setTimeout(() => {
+        document.removeEventListener('click', startWithMusic);
+      }, 100)
     }
+
+    onMounted(() => {
+      document.addEventListener('click', startWithMusic)
+    })
+
 
     return {
       playSound,
       toggleSound,
-      audio
+      audio,
     }
   }
 
@@ -65,6 +78,10 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.container-title {
+  height: 100%;
 }
 
 .container-button-sound {

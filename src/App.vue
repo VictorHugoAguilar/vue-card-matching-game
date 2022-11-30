@@ -139,11 +139,6 @@ management-bar {
   width: 100%;
 }
 
-.title {
-  margin-top: 20px;
-  width: 80%;
-}
-
 .board {
   z-index: 900 !important;
   width: 50%;
