@@ -19,6 +19,7 @@ export default {
     }
   },
   setup(props, context) {
+    const audioFlipCard = new Audio('audio/flip-card.mp3');
 
     const flippedStyles = computed(() => {
       if (props.visible) {
@@ -27,7 +28,12 @@ export default {
       return ''
     })
 
+    const audioFlip = () => {
+      audioFlipCard.play();
+    }
+
     const selectCard = () => {
+      audioFlip();
       context.emit('select-card', {
         position: props.position,
         faceValue: props.value

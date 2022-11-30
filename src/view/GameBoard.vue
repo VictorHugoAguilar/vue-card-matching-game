@@ -17,6 +17,8 @@ export default {
     const { cardList, init } = createDeck();
     init();
 
+    const audioFinishGame = new Audio('audio/risa.mp3');
+
     const { remainingPairs } = createGame(cardList);
     const { time } = createTime();
     const store = useStore();
@@ -40,6 +42,7 @@ export default {
     watch(remainingPairs, currentValue => {
       if (currentValue === 0) {
         store.commit('setTime', time.value)
+        audioFinishGame.play()
         launchConfetti()
       }
     })

@@ -1,10 +1,8 @@
 <template>
   <div class="container-header">
-
     <div class="container-title">
       <Title class="title no-select" value="Memo Halloween" />
     </div>
-
     <div class="container-button-sound">
       <div class="music-player">
         <audio id="audio" ref="audio" src="audio/bg-music.mp3" preload loop autoplay />
@@ -13,7 +11,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -59,7 +56,6 @@ export default {
     onMounted(() => {
       document.addEventListener('click', startWithMusic)
     })
-
 
     return {
       playSound,
