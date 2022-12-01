@@ -18,7 +18,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const showAddScore = ref(true);
+    const showAddScore = ref(false);
     const time = ref(0)
     watchEffect(() => {
       const status = store.getters.getStatus;
@@ -153,7 +153,8 @@ management-bar {
   background-color: var(--background-color-primary);
   border: 4px solid var(--color-primary);
   margin: 20px;
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
+  box-shadow: 0px 0px 15px var(--color-secundary);
 }
 
 .timing {
@@ -165,6 +166,7 @@ management-bar {
   border: 4px solid var(--color-primary);
   margin: 20px;
   padding: 0px 20px 20px 20px;
+  box-shadow: 0px 0px 15px var(--color-secundary);
 }
 
 .modal-add-score {
