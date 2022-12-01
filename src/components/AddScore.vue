@@ -1,23 +1,3 @@
-<template>
-  <div class="container-add-score">
-    <div class="close" @click="closeModal">[ <span>X</span> ]</div>
-    <div class="add-score">
-      <h1>Add Score</h1>
-      <form class="form" @submit.prevent="add">
-        <div class="form-control">
-          <label class="label-score">Your name: </label>
-          <input class="input-score-name" type="text" id="name" name="name">
-        </div>
-        <div class="form-control">
-          <label class="label-score">Your time has been: </label>
-          <div class="input-score-time">{{ times }} seg.</div>
-        </div>
-        <button class="btn-add">Add Score</button>
-      </form>
-    </div>
-  </div>
-</template>
-
 <script>
 import { toRefs } from 'vue'
 import createScore from '@/features/createScore';
@@ -57,16 +37,37 @@ export default {
 }
 </script>
 
+<template>
+  <div class="container-add-score ">
+    <div class="close" @click="closeModal">[ <span>X</span> ]</div>
+    <div class="add-score">
+      <h1>Add Score</h1>
+      <form class="form" @submit.prevent="add">
+        <div class="form-control">
+          <label class="label-score">Your name: </label>
+          <input class="input-score-name" type="text" id="name" name="name">
+        </div>
+        <div class="form-control">
+          <label class="label-score">Your time has been: </label>
+          <div class="input-score-time">{{ times }} seg.</div>
+        </div>
+        <button class="btn-add">Add Score</button>
+      </form>
+    </div>
+  </div>
+</template>
+
 <style scoped>
 .container-add-score {
-  background-color: var(--color-primary);
+  background-color: var(--background-color-secondary);
+  background-image: url("@/assets/images/page-bg.png");
   border-radius: 40px;
   width: 400px;
   height: 450px;
   position: absolute;
   margin-top: 300px;
   z-index: 99;
-  box-shadow: 5px 5px 5px var(--color-secundary);
+  box-shadow: 0px 0px 20px var(--color-secundary);
 }
 
 .add-score {
@@ -76,7 +77,7 @@ export default {
   align-items: center;
 }
 
-div.close {
+.close {
   color: var(--color-secundary);
   font-size: large;
   height: 30px;
@@ -91,10 +92,13 @@ div.close span {
 
 h1 {
   font-family: 'monster';
-  font-size: 3rem;
+  font-size: 4rem;
   margin: 0px;
-  margin-top: 20px;
+  margin-top: 10px;
+  letter-spacing: 2px;
   color: var(--color-secundary);
+  text-shadow: 2px 2px var(--color-primary);
+
 }
 
 .form {
@@ -106,7 +110,7 @@ h1 {
   margin: 20px 0px;
   font-family: 'monster';
   font-size: 2rem;
-  color: var(--color-light);
+  color: var(--color-primary);
   text-shadow: 2px 2px var(--color-secundary);
 }
 
@@ -120,11 +124,12 @@ h1 {
 
 .input-score-name {
   height: 30px;
-  background-color: transparent;
-  border: thin solid transparent;
+  background-color: var(--background-color-secondary);
+  border: thin solid var(--color-secundary);
   border-radius: 20px;
   box-shadow: 4px 4px 6px var(--color-secundary);
-  color: var(--color-secundary);
+  color: var(--color-primary);
+  font-weight: bolder;
   font-size: x-large;
   text-align: center;
 }
@@ -138,7 +143,7 @@ h1 {
   font-weight: bolder;
   font-size: x-large;
   text-align: center;
-  text-shadow: 2px 2px var(--color-light);
+  text-shadow: 2px 2px var(--color-primary);
 }
 
 .btn-add {
@@ -147,12 +152,15 @@ h1 {
   border: none;
   border-radius: 20px;
   margin: 20px 0px;
+  background-color: var(--color-primary);
   color: var(--color-secundary);
+  font-family: monster;
+  font-size: x-large;
   font-weight: bolder;
   text-transform: uppercase;
 }
 
 .btn-add:hover {
-  box-shadow: 4px 4px 6px var(--color-secundary);
+  box-shadow: 0px 0px 10px var(--color-secundary);
 }
 </style>

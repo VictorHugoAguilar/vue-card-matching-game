@@ -18,7 +18,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const showAddScore = ref(false);
+    const showAddScore = ref(true);
     const time = ref(0)
     watchEffect(() => {
       const status = store.getters.getStatus;
